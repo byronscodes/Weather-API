@@ -12,11 +12,11 @@ app.get('/locations/:zipcode', async (req, res) => {
     const {zipcode} = req.params;
     const {scale = "Fahrenheit"} = req.query;
 
-    // Check for zip code, return 400 error if not entered
-    if (!zipcode) {
+    // Check for valid zip code, return 400 error if not valid
+    if (zipcode.length != 5) {
         return res.status(400).json({
             status: 400,
-            error: "Zip code is required"
+            error: "Valid zip code is required"
         });
     }
 
