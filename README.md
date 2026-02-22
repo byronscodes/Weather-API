@@ -2,6 +2,9 @@
 
 This simple API allows you to find the temperature of a specified US zip code in either Fahrenheit or Celsius using the OpenWeather Current Weather API. If the units are not specified, then it defaults to Fahrenheit.
 
+## References
+
+During development, I took reference for structure of the API and Jest + Supertest tests from various API and testing examples found online. No code was directly generated for this project besides the last two Jest tests in `app.test.js`.
 
 ## Technologies
 
