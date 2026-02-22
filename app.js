@@ -1,4 +1,4 @@
-// JavaScript file using Node.js and Express to send a GET request to OpenWeather's current weather API
+// JavaScript app using Node.js and Express to send a GET request to OpenWeather's current weather API
 // Tested GET requests with Postman during development
 
 // Import Express and intialize Express app
@@ -78,7 +78,5 @@ app.get('/locations/:zipcode', async (req, res) => {
     }
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}/locations/24060`)
-});
+// Export the app so Jest testing can be used
+module.exports = app;
