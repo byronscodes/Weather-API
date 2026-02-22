@@ -1,1 +1,5 @@
+# Environment, holding API key
 .env*
+
+# Dependencies
+node_modules/
