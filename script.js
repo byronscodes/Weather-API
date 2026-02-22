@@ -3,13 +3,14 @@
 
 // Import Express and intialize Express app
 const express = require('express');
+require('dotenv').config();
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 // RESTful GET Request for OpenWeather API from zip code and optional scale
 app.get('/locations/:zipcode', async (req, res) => {
     const {zipcode} = req.params;
-    const {scale} = req.query || "Fahrenheit";
+    const {scale = "Fahrenheit"} = req.query;
 
     // Check for zip code, return 400 error if not entered
     if (!zipcode) {
@@ -47,7 +48,7 @@ app.get('/locations/:zipcode', async (req, res) => {
         if (!response.ok) {
             return res.status(response.status).json({
                 status: response.status,
-                error: `OpenWeather API failed: ${response.statusText}`
+                error: `OpenWeather API failed: "${response.statusText}"`
             });
         }
 
@@ -55,7 +56,11 @@ app.get('/locations/:zipcode', async (req, res) => {
         const data = await response.json();
 
         // Pluck wanted key
-        const {temp} = data;
+        const {
+            "main": {
+                temp
+            }
+        } = data;
 
         // Return clean data and original scale
         return res.status(200).json({
