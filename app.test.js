@@ -31,10 +31,11 @@ test('Successful; Celsius specified', async () => {
     expect(res.body.scale).toBe("Celsius");
 });
 
-test('404 Status; No zip code', async () => {
+test('400 Status; No zip code', async () => {
     const res = await request(app).get('/locations/');
 
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBe("Zip code is required");
 });
 
 test('400 Status; Too big zip code', async () => {

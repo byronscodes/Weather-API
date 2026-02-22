@@ -7,7 +7,15 @@ require('dotenv').config();
 const app = express();
 const PORT = 8080;
 
-// RESTful GET Request for OpenWeather API from zip code and optional scale
+// GET Request for OpenWeather API without zip code
+app.get('/locations', (req, res) => {
+  return res.status(400).json({
+    status: 400,
+    error: "Zip code is required"
+  });
+});
+
+// GET Request for OpenWeather API from zip code and optional scale
 app.get('/locations/:zipcode', async (req, res) => {
     const {zipcode} = req.params;
     const {scale = "Fahrenheit"} = req.query;
